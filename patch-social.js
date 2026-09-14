@@ -8,6 +8,7 @@ let s=fs.readFileSync(serverPath,'utf8');
 const mounts=[];
 if(!s.includes("require('./social-runtime')({app,io,auth});"))mounts.push("require('./social-runtime')({app,io,auth});");
 if(!s.includes("require('./chat-admin-runtime')({app,io,auth});"))mounts.push("require('./chat-admin-runtime')({app,io,auth});");
+if(!s.includes("require('./story-owner-runtime')({app,auth});"))mounts.push("require('./story-owner-runtime')({app,auth});");
 if(mounts.length){
   const needle='mongoose.connect(';
   const at=s.indexOf(needle);
@@ -23,4 +24,5 @@ if(!h.includes('/social-v3.css')){h=h.replace('</head>','<link rel="stylesheet" 
 if(!h.includes('/social-v3.js')){h=h.replace('</body>','<script src="/social-v3.js?v=3"></script></body>');changed=true}
 if(!h.includes('/global-v3.js')){h=h.replace('</body>','<script src="/global-v3.js?v=3"></script></body>');changed=true}
 if(!h.includes('/chat-admin-v3.js')){h=h.replace('</body>','<script src="/chat-admin-v3.js?v=3"></script></body>');changed=true}
+if(!h.includes('/story-owner-v3.js')){h=h.replace('</body>','<script src="/story-owner-v3.js?v=3"></script></body>');changed=true}
 if(changed){fs.writeFileSync(indexPath,h);console.log('Lumo social UI v3 injected')}
