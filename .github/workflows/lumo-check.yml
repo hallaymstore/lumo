@@ -22,9 +22,11 @@ jobs:
           node --check patch-social.js
           node --check social-runtime.js
           node --check chat-admin-runtime.js
+          node --check story-owner-runtime.js
       - name: Check browser JavaScript syntax
         run: |
           node --check public/bot-v2.js
           node --check public/social-v3.js
           node --check public/global-v3.js
           node --check public/chat-admin-v3.js
+          node --check public/story-owner-v3.js
