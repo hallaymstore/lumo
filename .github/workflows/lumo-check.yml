@@ -1,0 +1,31 @@
+name: Lumo Build Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm install
+      - name: Check server and runtime modules
+        run: |
+          node --check server.js
+          node --check patch-runtime.js
+          node --check patch-social.js
+          node --check social-runtime.js
+          node --check chat-admin-runtime.js
+      - name: Check browser JavaScript syntax
+        run: |
+          node --check public/bot-v2.js
+          node --check public/social-v3.js
+          node --check public/global-v3.js
+          node --check public/chat-admin-v3.js
