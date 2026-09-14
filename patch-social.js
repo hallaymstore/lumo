@@ -18,4 +18,5 @@ let h=fs.readFileSync(indexPath,'utf8');
 let changed=false;
 if(!h.includes('/social-v3.css')){h=h.replace('</head>','<link rel="stylesheet" href="/social-v3.css?v=3"></head>');changed=true}
 if(!h.includes('/social-v3.js')){h=h.replace('</body>','<script src="/social-v3.js?v=3"></script></body>');changed=true}
+if(!h.includes('/chat-admin-v3.js')){h=h.replace('</body>','<script src="/chat-admin-v3.js?v=3"></script></body>');changed=true}
 if(changed){fs.writeFileSync(indexPath,h);console.log('Lumo social UI v3 injected')}
